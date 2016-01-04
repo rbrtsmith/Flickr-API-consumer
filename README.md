@@ -1,4 +1,7 @@
-# webpack-react-es2015-eslint-boilerplate
-A very basic starting point for local React projects using Webpack, es2015 and eslint
+# Flickr API consumer, Using React, Webpack, ESlint, Mocha+Chai and ES2015 JavaScript
 
-`npm start` to run webpack with HMR on localhost:8080
+`npm start` to run webpack with hot moodule replacement on localhost:8080 for development &amp; testing.
+
+`npm run build` to build the dist files.
+
+`npm run test` to run the unit tests.
