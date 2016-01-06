@@ -6,7 +6,6 @@
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
     "build": "webpack",
-    "oldTest": "mocha --require babel-core/register --watch test/test.js",
     "test": "mocha './test/*.js' --compilers js:babel-core/register"
   },
   "keywords": [],
