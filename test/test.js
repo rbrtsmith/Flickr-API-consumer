@@ -22,12 +22,16 @@ describe('toggle-img-highlight', () => {
     })
 });
 
-
+const Foo = () => <div>Foo</div>
 
 // Test components
 describe('App', () => {
     it('should render a div', () =>{
-        
+        const renderer = TestUtils.createRenderer();
+        renderer.render(<Foo/>);
+        const actual = renderer.getRenderOutput();
+        const expected = <div>Foo</div>;
+        expect(actual).toIncludeJSX(expected);
     });
 });
 

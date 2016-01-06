@@ -1,5 +1,5 @@
 import React from 'react';
-import Img from './img';
+import Images from './images';
 import toggleImageHighlight from './../functions/toggle-img-highight';
 
 
@@ -35,23 +35,14 @@ export default React.createClass({
         });
     },
     render() {
-        const { data } = this.props;        
-        const images = data.map((item, index) => {
-            return (
-                <li key={index} className='o-grid__item'>
-                    <Img selectImage={this.selectImage} 
-                        isSelected={this.state.highlightedImages[index]}
-                        index={index} 
-                        src={item.media.m} 
-                    />
-                </li>
-            );
-        });
+        const { data } = this.props;
         return (
             <div className='o-wrapper'>
-                <ul className='o-grid'>
-                    {images}
-                </ul>
+                <Images 
+                    data={data}
+                    selectImage={this.selectImage} 
+                    highlightedImages={this.state.highlightedImages}
+                />
             </div>
         );
     }
