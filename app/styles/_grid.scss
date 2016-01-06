@@ -9,8 +9,14 @@
 
     .o-grid__item {
         display: inline-block;
-        width: 25%;
         padding-left: $spacing-unit;
         padding-bottom: $spacing-unit;
         vertical-align: middle;
+        width: 50%;
+        @media (min-width: 500px) {
+            width: 33.333%;
+        }
+        @media (min-width: 800px) {
+            width: 25%;
+        }
     }

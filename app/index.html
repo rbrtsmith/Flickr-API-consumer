@@ -11,10 +11,19 @@
     <script type="text/javascript">
 
     (function(){
+        /**
+         * I had to modify the snippet in order to persist the JSON that was returned
+         * from the Flickr API in localStorage.
+         *
+         * Also had to crate a global function (APP) to call the ReactDOM.Render from the FLickr
+         * API callback passing in the data Object OR call APP passing in the object fetched from
+         * localStorage if it exists.
+         *
+         */
         function queryFlickrAPI() {
             window.cb = function(data) {
                 localStorage.setItem('FlickrImages', JSON.stringify(data));
-                window.app(data);
+                window.APP(data);
             }
             var tags='london';
             var script=document.createElement('script');
@@ -23,7 +32,7 @@
         }
 
         if (localStorage.getItem('FlickrImages')) {
-            window.app(JSON.parse(localStorage.getItem('FlickrImages')));
+            window.APP(JSON.parse(localStorage.getItem('FlickrImages')));
         } else {
             queryFlickrAPI();            
         }

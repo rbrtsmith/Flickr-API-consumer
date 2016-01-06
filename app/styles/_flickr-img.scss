@@ -1,4 +1,8 @@
 
 .o-flickr-img {
     width: 100%;
+    cursor: pointer;
+    &.selected {
+    	outline: 0.25rem dashed red;
+    }
 }
