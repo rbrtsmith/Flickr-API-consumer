@@ -6,7 +6,7 @@ expect.extend(expectJSX);
 
 import toggleImageHighlight from './../app/functions/toggle-img-highight';
 
-import App from './../app/components/app';
+import Images from './../app/components/images';
 import Img from './../app/components/img';
 
 
@@ -22,24 +22,48 @@ describe('toggle-img-highlight', () => {
     })
 });
 
-const Foo = () => <div>Foo</div>
+
+
+
 
 // Test components
-describe('App', () => {
-    it('should render a div', () =>{
+describe('Images', () => {
+    const testData = {
+        data: [
+            {
+                media: {
+                    m: ''
+                }
+            }, 
+            {
+                media: {
+                    m: ''
+                }
+            }
+        ],
+        selectImage(){ return null },
+        highlightedImages: [false, false, false]
+    };
+    it('should be an unordered list', () =>{
         const renderer = TestUtils.createRenderer();
-        renderer.render(<Foo/>);
-        const actual = renderer.getRenderOutput();
-        const expected = <div>Foo</div>;
-        expect(actual).toIncludeJSX(expected);
+        renderer.render(<Images
+            data={testData.data}
+            selectImage={testData.selectImage}
+            highlightedImages={testData.highlightedImages}
+        />);
+        const actual = renderer.getRenderOutput().type;
+        const expected = 'ul';
+        expect(actual).toEqual(expected);
     });
 });
 
+
+
 describe('Img', () => {
+    const clickHandler = () => null;
 
     it('should render an image.', () => {
         const renderer = TestUtils.createRenderer();
-        const clickHandler = () => null;
         renderer.render(<Img 
             selectImage={clickHandler} 
             index={1} 
@@ -58,7 +82,6 @@ describe('Img', () => {
 
     it('should give a selected class if favourited.', () => {
         const renderer = TestUtils.createRenderer();
-        const clickHandler = () => null;
         renderer.render(<Img 
             selectImage={clickHandler} 
             index={1} 
