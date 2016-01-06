@@ -6,11 +6,12 @@ expect.extend(expectJSX);
 
 import toggleImageHighlight from './../app/functions/toggle-img-highight';
 
+import App from './../app/components/app';
 import Img from './../app/components/img';
 
 
 
-
+// Test functions
 describe('toggle-img-highlight', () => {
     it('return an array with the boolean at the index reversed.', () => {
         const index = 1;
@@ -21,6 +22,14 @@ describe('toggle-img-highlight', () => {
     })
 });
 
+
+
+// Test components
+describe('App', () => {
+    it('should render a div', () =>{
+        
+    });
+});
 
 describe('Img', () => {
 

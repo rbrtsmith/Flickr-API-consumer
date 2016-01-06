@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        javascript: __dirname + "/app/app.js",
+        javascript: __dirname + "/app/index.js",
         html: __dirname + "/app/index.html"
     },
     output: {
