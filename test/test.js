@@ -4,22 +4,28 @@ import expect from 'expect';
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
 
-const CoolComponent = ({greeting}) => (
-    <div>
-        <h1>Greeting</h1>
-        <div>{greeting}</div>
-    </div>
-);
+import Img from './../app/components/img';
+
+const clickHandler = () => null;
 
 
-describe('CoolComponent', () => {
+describe('Img', () => {
 
-    it('should render the greeting', () => {
+    it('should render an image', () => {
         const renderer = TestUtils.createRenderer();
-        renderer.render(<CoolComponent greeting="Hello world" />);
+        renderer.render(<Img 
+            selectImage={clickHandler} 
+            index={1} 
+            isSelected={false} 
+            src={'http://farm2.staticflickr.com/1482/23548579844_820dd5f1f4_m.jpg'}
+        />);
         
         const actual = renderer.getRenderOutput();
-        const expected = <div>Hello world</div>;
+        const expected = <img 
+            src={'http://farm2.staticflickr.com/1482/23548579844_820dd5f1f4_m.jpg'} 
+            className={'o-flickr-img'}
+            onClick={clickHandler}
+        />;
         expect(actual).toIncludeJSX(expected);
         
     });
