@@ -4,15 +4,29 @@ import expect from 'expect';
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
 
+import toggleImageHighlight from './../app/functions/toggle-img-highight';
+
 import Img from './../app/components/img';
 
-const clickHandler = () => null;
+
+
+
+describe('toggle-img-highlight', () => {
+    it('return an array with the boolean at the index reversed.', () => {
+        const index = 1;
+        const initialState = [false, false, false];
+        const expected = [false, true, false];
+        const actual = toggleImageHighlight(index, initialState);
+        expect(actual).toEqual(expected);
+    })
+});
 
 
 describe('Img', () => {
 
-    it('should render an image', () => {
+    it('should render an image.', () => {
         const renderer = TestUtils.createRenderer();
+        const clickHandler = () => null;
         renderer.render(<Img 
             selectImage={clickHandler} 
             index={1} 
@@ -29,8 +43,9 @@ describe('Img', () => {
     });
 
 
-    it('should give a selected class if favourited', () => {
+    it('should give a selected class if favourited.', () => {
         const renderer = TestUtils.createRenderer();
+        const clickHandler = () => null;
         renderer.render(<Img 
             selectImage={clickHandler} 
             index={1} 

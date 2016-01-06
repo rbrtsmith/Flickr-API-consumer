@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Img from './components/img';
 import css from './styles/style.scss';
-import toggleImageHighlight from './functions/toggle-img-highlight';
+import toggleImageHighlight from './functions/toggle-img-highight';
 
 
 
@@ -29,7 +29,7 @@ const App = React.createClass({
 		const highlightedImages = JSON.parse(localStorage.getItem('highlightedImages'));
 
 		// update state
-		const newState = toggleImageHighlight(this.state.highlightedImages, imgIndex, highlightedImages);
+		const newState = toggleImageHighlight(imgIndex, highlightedImages);
 		// update state in localStorage.
 		localStorage.setItem('highlightedImages', JSON.stringify(highlightedImages));
 		// force re-render of the app
