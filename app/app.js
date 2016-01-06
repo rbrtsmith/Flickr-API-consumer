@@ -2,42 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Img from './components/img';
 import css from './styles/style.scss';
+import toggleImageHighlight from './functions/toggle-img-highlight';
+
+
 
 const App = React.createClass({
 	getInitialState(){
 		const { data } = this.props;
 		const disselectAll = (data) => data.map(() => false);
-		let selectedImages;
-		if (localStorage.getItem('selectedImages')) {
+		let highlightedImages;
+		if (localStorage.getItem('highlightedImages')) {
 			// state is found in localStorage... then get that state
-			selectedImages = JSON.parse(localStorage.getItem('selectedImages'));
+			highlightedImages = JSON.parse(localStorage.getItem('highlightedImages'));
 		} else {
 			// No state foun in localStorage so create a new state with all objects disselected
-			selectedImages = disselectAll(data);
+			highlightedImages = disselectAll(data);
 			// then push the new state to localStorage.
-			localStorage.setItem('selectedImages', JSON.stringify(selectedImages));
+			localStorage.setItem('highlightedImages', JSON.stringify(highlightedImages));
 		}
 		return {
-			selectedImages
+			highlightedImages
 		};
 	},
 	selectImage(imgIndex) {
-		// get state from localStorage
-		const selectedImages = JSON.parse(localStorage.getItem('selectedImages'));
+		// get current state from localStorage
+		const highlightedImages = JSON.parse(localStorage.getItem('highlightedImages'));
 
-		const newState = this.state.selectedImages.map((selectedValue, index) => {
-			if (imgIndex === index) {
-				selectedImages[index] = !selectedImages[index];
-				return !selectedValue;
-			} else {
-				return selectedValue;
-			}
-		});
+		// update state
+		const newState = toggleImageHighlight(this.state.highlightedImages, imgIndex, highlightedImages);
 		// update state in localStorage.
-		localStorage.setItem('selectedImages', JSON.stringify(selectedImages));
+		localStorage.setItem('highlightedImages', JSON.stringify(highlightedImages));
 		// force re-render of the app
 		this.setState({
-			selectedImages: newState
+			highlightedImages: newState
 		});
 	},
 	render() {
@@ -46,7 +43,7 @@ const App = React.createClass({
 			return (
 				<li key={index} className='o-grid__item'>
 					<Img selectImage={this.selectImage} 
-						isSelected={this.state.selectedImages[index]}
+						isSelected={this.state.highlightedImages[index]}
 						index={index} 
 						src={item.media.m} 
 					/>
