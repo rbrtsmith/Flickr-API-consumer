@@ -1,15 +1,26 @@
-import chai from 'chai';
-import assert from 'assert';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+import expect from 'expect';
+import expectJSX from 'expect-jsx';
+expect.extend(expectJSX);
+
+const CoolComponent = ({greeting}) => (
+    <div>
+        <h1>Greeting</h1>
+        <div>{greeting}</div>
+    </div>
+);
 
 
+describe('CoolComponent', () => {
 
-import sanatize from '../app/sanatize.js';
-describe('Sanatize', () => {
-	it('returns lowercase of a string', () => {
-		const input = 'HELLO WORLD',
-			expected = 'hello world',
-			actual = sanatize(input);
-		assert.equal(actual, expected)
-	});
-
+    it('should render the greeting', () => {
+        const renderer = TestUtils.createRenderer();
+        renderer.render(<CoolComponent greeting="Hello world" />);
+        
+        const actual = renderer.getRenderOutput();
+        const expected = <div>Hello world</div>;
+        expect(actual).toIncludeJSX(expected);
+        
+    });
 });
