@@ -28,7 +28,7 @@ export default React.createClass({
         // update state
         const newState = toggleImageHighlight(imgIndex, highlightedImages);
         // update state in localStorage.
-        localStorage.setItem('highlightedImages', JSON.stringify(highlightedImages));
+        localStorage.setItem('highlightedImages', JSON.stringify(newState));
         // force re-render of the app
         this.setState({
             highlightedImages: newState
